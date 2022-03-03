@@ -4,6 +4,7 @@
 
 <div>
 	<div class="container mx-auto my-6 max-w-lg">
+		<!-- TODO - auth is broken. -->
 		<Auth let:loggedIn let:loginWithGoogle>
 			{#if loggedIn}
 				<slot />

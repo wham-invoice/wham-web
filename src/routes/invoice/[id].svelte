@@ -15,19 +15,25 @@
 </script>
 
 <script type="ts">
-	import { user } from '../../stores/AuthStore';
 	export let id: string;
 
-	let promise;
-
-	if ($user != null) {
-		promise = loadOne(id);
-	}
+	// TODO - add a loading state
+	// TODO - get contact & user from their ids
+	let promise = loadOne(id);
 </script>
 
 {#await promise}
 	<h1>...loading</h1>
 {:then invoice}
 	<h1>{invoice.id}</h1>
+	<main>{invoice.data().contact_id}</main>
 	<main>{invoice.data().description}</main>
+	<main>{invoice.data().due_date}</main>
+	<main>{invoice.data().hours}</main>
+	<main>{invoice.data().paid}</main>
+	<main>{invoice.data().rate}</main>
+	<main>{invoice.data().user_id}</main>
+{:catch error}
+	<!-- TODO assert error has message property -->
+	<p style="color: red">{error.message}</p>
 {/await}

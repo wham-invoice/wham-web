@@ -18,7 +18,6 @@ export const loadAll = async (userID: string) => {
     try {
         const q = query(invoicesCollection, where("user_id", "==", userID))
         const docsSnap = await getDocs(q);
-        console.log(docsSnap);
 
         docsSnap.forEach((doc) => {
             invoices.update((invoices) => {
