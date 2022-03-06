@@ -1,7 +1,7 @@
 <script context="module" type="ts">
 	// module runs once per module and is shared across all instances of that module.
 
-	import { loadOne } from '../../stores/InvoiceStore';
+	import { loadOnePlatform } from '../../stores/InvoiceStore';
 
 	// The load function is reactive, and will re-run when its parameters change,
 	// but only if they are used in the function. The function runs server-side and also client-side,
@@ -19,20 +19,19 @@
 
 	// TODO - add a loading state
 	// TODO - get contact & user from their ids
-	let promise = loadOne(id);
+	// TODO - move to onMount
+	let promise = loadOnePlatform(id);
 </script>
 
 {#await promise}
 	<h1>...loading</h1>
 {:then invoice}
-	<h1>{invoice.id}</h1>
-	<main>{invoice.data().contact_id}</main>
-	<main>{invoice.data().description}</main>
-	<main>{invoice.data().due_date}</main>
-	<main>{invoice.data().hours}</main>
-	<main>{invoice.data().paid}</main>
-	<main>{invoice.data().rate}</main>
-	<main>{invoice.data().user_id}</main>
+	<main>{invoice.UserID}</main>
+	<main>{invoice.Description}</main>
+	<main>{invoice.ContactID}</main>
+	<main>{invoice.DueDate}</main>
+	<main>{invoice.Rate}</main>
+	<main>{invoice.Paid}</main>
 {:catch error}
 	<!-- TODO assert error has message property -->
 	<p style="color: red">{error.message}</p>
