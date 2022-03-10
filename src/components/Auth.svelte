@@ -1,8 +1,12 @@
 <script type="ts">
 	import { signInWithPopup, getAuth, GoogleAuthProvider, User } from 'firebase/auth';
 	import { user } from '../stores/AuthStore';
+	import { firebaseInit } from '../firebase';
 
 	let loggedIn = false;
+
+	// TODO - move to a svelte module?
+	firebaseInit();
 
 	const loginWithGoogle = async () => {
 		try {
